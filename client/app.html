@@ -12,50 +12,156 @@
     <h1>🏠 घर मूल्य अनुमानकर्ता | Home Price Predictor</h1>
     <p class="subtitle">नेपालको लागि | For Nepal</p>
 </div>
-<form class="form">
-    <h2>क्षेत्रफल (वर्ग फिट) | Area (Square Feet)</h2>
-    <input class="area" type="text" id="uiSqft" class="floatLabel" name="Squareft" value="1000">
-    <h2>BHK (बेडरूम संख्या) | BHK (Bedrooms)</h2>
-    <div class="switch-field">
-        <input type="radio" id="radio-bhk-1" name="uiBHK" value="1"/>
-        <label for="radio-bhk-1">१ | 1</label>
-        <input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked/>
-        <label for="radio-bhk-2">२ | 2</label>
-        <input type="radio" id="radio-bhk-3" name="uiBHK" value="3"/>
-        <label for="radio-bhk-3">३ | 3</label>
-        <input type="radio" id="radio-bhk-4" name="uiBHK" value="4"/>
-        <label for="radio-bhk-4">४ | 4</label>
-        <input type="radio" id="radio-bhk-5" name="uiBHK" value="5"/>
-        <label for="radio-bhk-5">५ | 5</label>
+
+<div class="main-container">
+    <!-- Left Side: Price Prediction Form -->
+    <div class="left-section">
+        <form class="form">
+            <h2>क्षेत्रफल (वर्ग फिट) | Area (Square Feet)</h2>
+            <input class="area" type="text" id="uiSqft" class="floatLabel" name="Squareft" value="1000">
+            <h2>BHK (बेडरूम संख्या) | BHK (Bedrooms)</h2>
+            <div class="switch-field">
+                <input type="radio" id="radio-bhk-1" name="uiBHK" value="1"/>
+                <label for="radio-bhk-1">१ | 1</label>
+                <input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked/>
+                <label for="radio-bhk-2">२ | 2</label>
+                <input type="radio" id="radio-bhk-3" name="uiBHK" value="3"/>
+                <label for="radio-bhk-3">३ | 3</label>
+                <input type="radio" id="radio-bhk-4" name="uiBHK" value="4"/>
+                <label for="radio-bhk-4">४ | 4</label>
+                <input type="radio" id="radio-bhk-5" name="uiBHK" value="5"/>
+                <label for="radio-bhk-5">५ | 5</label>
+            </div>
+        </form>
+        <form class="form">
+            <h2>बाथरूम संख्या | Bathrooms</h2>
+            <div class="switch-field">
+                <input type="radio" id="radio-bath-1" name="uiBathrooms" value="1"/>
+                <label for="radio-bath-1">१ | 1</label>
+                <input type="radio" id="radio-bath-2" name="uiBathrooms" value="2" checked/>
+                <label for="radio-bath-2">२ | 2</label>
+                <input type="radio" id="radio-bath-3" name="uiBathrooms" value="3"/>
+                <label for="radio-bath-3">३ | 3</label>
+                <input type="radio" id="radio-bath-4" name="uiBathrooms" value="4"/>
+                <label for="radio-bath-4">४ | 4</label>
+                <input type="radio" id="radio-bath-5" name="uiBathrooms" value="5"/>
+                <label for="radio-bath-5">५ | 5</label>
+            </div>
+            <h2>स्थान छान्नुहोस् | Location</h2>
+            <div>
+                <select class="location" name="" id="uiLocations">
+                    <option value="" disabled="disabled" selected="selected">स्थान छान्नुहोस् | Choose a Location</option>
+                    <option>Electronic City</option>
+                    <option>Rajaji Nagar</option>
+                </select>
+            </div>
+            <button class="submit" onclick="onClickedEstimatePrice()" type="button">मूल्य अनुमान गर्नुहोस् | Estimate Price</button>
+            <div id="uiEstimatedPrice" class="result"><h2></h2></div>
+        </form>
     </div>
-</form>
-<form class="form">
-    <h2>बाथरूम संख्या | Bathrooms</h2>
-    <div class="switch-field">
-        <input type="radio" id="radio-bath-1" name="uiBathrooms" value="1"/>
-        <label for="radio-bath-1">१ | 1</label>
-        <input type="radio" id="radio-bath-2" name="uiBathrooms" value="2" checked/>
-        <label for="radio-bath-2">२ | 2</label>
-        <input type="radio" id="radio-bath-3" name="uiBathrooms" value="3"/>
-        <label for="radio-bath-3">३ | 3</label>
-        <input type="radio" id="radio-bath-4" name="uiBathrooms" value="4"/>
-        <label for="radio-bath-4">४ | 4</label>
-        <input type="radio" id="radio-bath-5" name="uiBathrooms" value="5"/>
-        <label for="radio-bath-5">५ | 5</label>
+
+    <!-- Right Side: Land Area Converter -->
+    <div class="right-section">
+        <div class="converter-card">
+            <h3 class="converter-title">📏 जग्गा क्षेत्रफल रूपान्तरण | Land Area Converter</h3>
+            
+            <div class="converter-group">
+                <label>आना (Aana)</label>
+                <input type="number" id="aana" class="converter-input" placeholder="0" step="0.01">
+            </div>
+
+            <div class="converter-group">
+                <label>रोपनी (Ropani)</label>
+                <input type="number" id="ropani" class="converter-input" placeholder="0" step="0.01">
+            </div>
+
+            <div class="converter-group">
+                <label>धुर (Dhur)</label>
+                <input type="number" id="dhur" class="converter-input" placeholder="0" step="0.01">
+            </div>
+
+            <div class="converter-group">
+                <label>वर्ग फिट (Sq. Ft.)</label>
+                <input type="number" id="sqft" class="converter-input" placeholder="0" step="0.01">
+            </div>
+
+            <div class="converter-group">
+                <label>वर्ग मिटर (Sq. M.)</label>
+                <input type="number" id="sqm" class="converter-input" placeholder="0" step="0.01">
+            </div>
+
+            <div class="conversion-info">
+                <p><strong>रूपान्तरण सूत्र | Conversion Formula:</strong></p>
+                <ul>
+                    <li>1 Ropani = 16 Aana = 5476 Sq. Ft.</li>
+                    <li>1 Aana = 4 Paisa = 342.25 Sq. Ft.</li>
+                    <li>1 Dhur = 16.93 Sq. Ft.</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <h2>स्थान छान्नुहोस् | Location</h2>
-    <div>
-        <select class="location" name="" id="uiLocations">
-            <option value="" disabled="disabled" selected="selected">स्थान छान्नुहोस् | Choose a Location</option>
-            <option>Kathmandu | काठमाडौं</option>
-            <option>Patan | पाटन</option>
-            <option>Bhaktapur | भक्तपुर</option>
-            <option>Baneshwor | बानेश्वर</option>
-            <option>Maharajgunj | महाराजगंज</option>
-        </select>
-    </div>
-    <button class="submit" onclick="onClickedEstimatePrice()" type="button">मूल्य अनुमान गर्नुहोस् | Estimate Price</button>
-    <div id="uiEstimatedPrice" class="result"><h2></h2></div>
-</form>
+</div>
+
+<script>
+// Land Area Converter Functions
+const conversions = {
+    ropaniToSqFt: 5476,
+    aanaToSqFt: 342.25,
+    dhurToSqFt: 16.93,
+    sqFtToSqM: 0.092903
+};
+
+function convertFromSqFt(sqft) {
+    return {
+        ropani: sqft / conversions.ropaniToSqFt,
+        aana: sqft / conversions.aanaToSqFt,
+        dhur: sqft / conversions.dhurToSqFt,
+        sqm: sqft * conversions.sqFtToSqM
+    };
+}
+
+function updateAllFields(sourceName, sourceValue) {
+    let sqftValue;
+    
+    switch(sourceName) {
+        case 'ropani':
+            sqftValue = sourceValue * conversions.ropaniToSqFt;
+            break;
+        case 'aana':
+            sqftValue = sourceValue * conversions.aanaToSqFt;
+            break;
+        case 'dhur':
+            sqftValue = sourceValue * conversions.dhurToSqFt;
+            break;
+        case 'sqft':
+            sqftValue = sourceValue;
+            break;
+        case 'sqm':
+            sqftValue = sourceValue / conversions.sqFtToSqM;
+            break;
+    }
+    
+    const converted = convertFromSqFt(sqftValue);
+    
+    if (sourceName !== 'ropani') document.getElementById('ropani').value = converted.ropani.toFixed(4);
+    if (sourceName !== 'aana') document.getElementById('aana').value = converted.aana.toFixed(4);
+    if (sourceName !== 'dhur') document.getElementById('dhur').value = converted.dhur.toFixed(4);
+    if (sourceName !== 'sqft') document.getElementById('sqft').value = sqftValue.toFixed(2);
+    if (sourceName !== 'sqm') document.getElementById('sqm').value = converted.sqm.toFixed(2);
+}
+
+// Add event listeners for converter
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = ['ropani', 'aana', 'dhur', 'sqft', 'sqm'];
+    
+    inputs.forEach(inputName => {
+        const input = document.getElementById(inputName);
+        input.addEventListener('input', function() {
+            const value = parseFloat(this.value) || 0;
+            updateAllFields(inputName, value);
+        });
+    });
+});
+</script>
 </body>
 </html>
